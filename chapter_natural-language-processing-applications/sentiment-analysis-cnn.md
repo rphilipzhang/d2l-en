@@ -61,7 +61,7 @@ train_iter, test_iter, vocab = d2l.load_data_imdb(batch_size)
 ## One-Dimensional Convolutions
 
 Before introducing the model, 
-let us see how a one-dimensional convolution works.
+let's see how a one-dimensional convolution works.
 Bear in mind that it is just a special case
 of a two-dimensional convolution
 based on the cross-correlation operation.
@@ -206,7 +206,7 @@ into the output as follows:
 
 1. Define multiple one-dimensional convolution kernels and perform convolution operations separately on the inputs. Convolution kernels with different widths may capture local features among different numbers of adjacent tokens.
 1. Perform max-over-time pooling on all the output channels, and then concatenate all the scalar pooling outputs as a vector.
-1. Transform the concatenated vector into the output categories using the fully-connected layer. Dropout can be used for reducing overfitting.
+1. Transform the concatenated vector into the output categories using the fully connected layer. Dropout can be used for reducing overfitting.
 
 ![The model architecture of textCNN.](../img/textcnn.svg)
 :label:`fig_conv1d_textcnn`
@@ -319,7 +319,7 @@ class TextCNN(nn.Module):
         return outputs
 ```
 
-Let us create a textCNN instance. 
+Let's create a textCNN instance. 
 It has 3 convolutional layers with kernel widths of 3, 4, and 5, all with 100 output channels.
 
 ```{.python .input}
@@ -350,7 +350,6 @@ as the initialized token representations.
 These token representations (embedding weights)
 will be trained in `embedding`
 and fixed in `constant_embedding`.
-
 
 ```{.python .input}
 glove_embedding = d2l.TokenEmbedding('glove.6b.100d')

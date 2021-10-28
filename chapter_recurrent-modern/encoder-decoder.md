@@ -20,7 +20,7 @@ which is depicted in :numref:`fig_encoder_decoder`.
 ![The encoder-decoder architecture.](../img/encoder-decoder.svg)
 :label:`fig_encoder_decoder`
 
-Let us take machine translation from English to French
+Let's take machine translation from English to French
 as an example.
 Given an input sequence in English:
 "They", "are", "watching", ".",
@@ -233,4 +233,8 @@ this encoder-decoder architecture.
 
 :begin_tab:`pytorch`
 [Discussions](https://discuss.d2l.ai/t/1061)
+:end_tab:
+
+:begin_tab:`tensorflow`
+[Discussions](https://discuss.d2l.ai/t/3864)
 :end_tab:

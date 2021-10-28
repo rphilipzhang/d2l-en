@@ -333,7 +333,7 @@ class AdditiveAttention(tf.keras.layers.Layer):
             self.attention_weights, **kwargs), values)
 ```
 
-Let us [**demonstrate the above `AdditiveAttention` class**]
+Let's [**demonstrate the above `AdditiveAttention` class**]
 with a toy example,
 where shapes (batch size, number of steps or sequence length in tokens, feature size)
 of queries, keys, and values
@@ -471,7 +471,7 @@ class DotProductAttention(nn.Module):
     # Shape of `valid_lens`: (`batch_size`,) or (`batch_size`, no. of queries)
     def forward(self, queries, keys, values, valid_lens=None):
         d = queries.shape[-1]
-        # Set `transpose_b=True` to swap the last two dimensions of `keys`
+        # Swap the last two dimensions of `keys` with `keys.transpose(1,2)`
         scores = torch.bmm(queries, keys.transpose(1,2)) / math.sqrt(d)
         self.attention_weights = masked_softmax(scores, valid_lens)
         return torch.bmm(self.dropout(self.attention_weights), values)
@@ -558,4 +558,8 @@ d2l.show_heatmaps(d2l.reshape(attention.attention_weights, (1, 1, 2, 10)),
 
 :begin_tab:`pytorch`
 [Discussions](https://discuss.d2l.ai/t/1064)
+:end_tab:
+
+:begin_tab:`tensorflow`
+[Discussions](https://discuss.d2l.ai/t/3867)
 :end_tab:

@@ -39,24 +39,34 @@ Next, we go deeper into the mechanics of initialization.
 
 ## Instantiating a Network
 
-To begin, let us instantiate an MLP.
+To begin, let's instantiate an MLP.
 
 ```{.python .input}
+%load_ext d2lbook.tab
+tab.interact_select(['mxnet', 'pytorch', 'tensorflow'])
+```
+
+```{.python .input}
+%%tab mxnet
 from mxnet import np, npx
 from mxnet.gluon import nn
 npx.set_np()
 
-def get_net():
-    net = nn.Sequential()
-    net.add(nn.Dense(256, activation='relu'))
-    net.add(nn.Dense(10))
-    return net
-
-net = get_net()
+net = nn.Sequential()
+net.add(nn.Dense(256, activation='relu'))
+net.add(nn.Dense(10))
 ```
 
 ```{.python .input}
-#@tab tensorflow
+%%tab pytorch
+import torch
+from torch import nn
+
+net = nn.Sequential(nn.LazyLinear(256), nn.ReLU(), nn.LazyLinear(10))
+```
+
+```{.python .input}
+%%tab tensorflow
 import tensorflow as tf
 
 net = tf.keras.models.Sequential([
@@ -72,12 +82,19 @@ Consequently the framework has not yet initialized any parameters.
 We confirm by attempting to access the parameters below.
 
 ```{.python .input}
+%%tab mxnet
+net.initialize()
 print(net.collect_params)
 print(net.collect_params())
 ```
 
 ```{.python .input}
-#@tab tensorflow
+%%tab pytorch
+net[0].weight
+```
+
+```{.python .input}
+%%tab tensorflow
 [net.layers[i].get_weights() for i in range(len(net.layers))]
 ```
 
@@ -89,7 +106,7 @@ that the parameter dimension remains unknown.
 At this point, attempts to access `net[0].weight.data()`
 would trigger a runtime error stating that the network
 must be initialized before the parameters can be accessed.
-Now let us see what happens when we attempt to initialize
+Now let's see what happens when we attempt to initialize
 parameters via the `initialize` function.
 :end_tab:
 
@@ -113,10 +130,11 @@ Instead, this call registers to MXNet that we wish
 to initialize the parameters.
 :end_tab:
 
-Next let us pass data through the network
+Next let's pass data through the network
 to make the framework finally initialize parameters.
 
 ```{.python .input}
+%%tab mxnet
 X = np.random.uniform(size=(2, 20))
 net(X)
 
@@ -124,7 +142,15 @@ net.collect_params()
 ```
 
 ```{.python .input}
-#@tab tensorflow
+%%tab pytorch
+X = torch.rand(2, 20)
+net(X)
+
+net[0].weight.shape
+```
+
+```{.python .input}
+%%tab tensorflow
 X = tf.random.uniform((2, 20))
 net(X)
 [w.shape for w in net.get_weights()]

@@ -71,7 +71,7 @@ Below, we [**use a ResNet-18 model pretrained on the ImageNet dataset to extract
 and denote the model instance as `pretrained_net`.
 The last few layers of this model
 include a global average pooling layer
-and a fully-connected layer:
+and a fully connected layer:
 they are not needed
 in the fully convolutional network.
 
@@ -89,7 +89,7 @@ list(pretrained_net.children())[-3:]
 Next, we [**create the fully convolutional network instance `net`**].
 It copies all the pretrained layers in the ResNet-18
 except for the final global average pooling layer
-and the fully-connected layer that are closest
+and the fully connected layer that are closest
 to the output.
 
 ```{.python .input}
@@ -217,7 +217,7 @@ def bilinear_kernel(in_channels, out_channels, kernel_size):
     return weight
 ```
 
-Let us [**experiment with upsampling of bilinear interpolation**] 
+Let's [**experiment with upsampling of bilinear interpolation**] 
 that is implemented by a transposed convolutional layer. 
 We construct a transposed convolutional layer that 
 doubles the height and weight,
@@ -340,7 +340,6 @@ d2l.train_ch13(net, train_iter, test_iter, loss, trainer, num_epochs, devices)
 
 When predicting, we need to standardize the input image
 in each channel and transform the image into the four-dimensional input format required by the CNN.
-
 
 ```{.python .input}
 def predict(img):

@@ -6,7 +6,7 @@ With the proliferation of online social media
 and review platforms,
 a plethora of
 opinionated data
-have been logged,
+has been logged,
 bearing great potential for
 supporting decision making processes.
 *Sentiment analysis*
@@ -108,7 +108,7 @@ vocab = d2l.Vocab(train_tokens, min_freq=5, reserved_tokens=['<pad>'])
 ```
 
 After tokenization,
-let us plot the histogram of
+let's plot the histogram of
 review lengths in tokens.
 
 ```{.python .input}

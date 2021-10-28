@@ -2,7 +2,7 @@
 :label:`sec_multi_gpu_concise`
 
 Implementing parallelism from scratch for every new model is no fun. Moreover, there is significant benefit in optimizing synchronization tools for high performance. In the following we will show how to do this using high-level APIs of deep learning frameworks.
-The math and the algorithms are the same as in :numref:`sec_multi_gpu`.
+The mathematics and the algorithms are the same as in :numref:`sec_multi_gpu`.
 Quite unsurprisingly you will need at least two GPUs to run code of this section.
 
 ```{.python .input}
@@ -21,7 +21,7 @@ from torch import nn
 
 ## [**A Toy Network**]
 
-Let us use a slightly more meaningful network than LeNet from :numref:`sec_multi_gpu` that is still sufficiently easy and quick to train. 
+Let's use a slightly more meaningful network than LeNet from :numref:`sec_multi_gpu` that is still sufficiently easy and quick to train.
 We pick a ResNet-18 variant :cite:`He.Zhang.Ren.ea.2016`. Since the input images are tiny we modify it slightly. In particular, the difference from :numref:`sec_resnet` is that we use a smaller convolution kernel, stride, and padding at the beginning.
 Moreover, we remove the maximum pooling layer.
 
@@ -88,7 +88,7 @@ def resnet18(num_classes, in_channels=1):
 
 :begin_tab:`mxnet`
 The `initialize` function allows us to initialize parameters on a device of our choice.
-For a refresher on initialization methods see :numref:`sec_numerical_stability`. What is particularly convenient is that it also allows us to initialize the network on *multiple* devices simultaneously. Let us try how this works in practice.
+For a refresher on initialization methods see :numref:`sec_numerical_stability`. What is particularly convenient is that it also allows us to initialize the network on *multiple* devices simultaneously. Let's try how this works in practice.
 :end_tab:
 
 :begin_tab:`pytorch`
@@ -123,7 +123,7 @@ net(x_shards[0]), net(x_shards[1])
 ```
 
 :begin_tab:`mxnet`
-Once data pass through the network, the corresponding parameters are initialized *on the device the data passed through*.
+Once data passes through the network, the corresponding parameters are initialized *on the device the data passed through*.
 This means that initialization happens on a per-device basis. Since we picked GPU 0 and GPU 1 for initialization, the network is initialized only there, and not on the CPU. In fact, the parameters do not even exist on the CPU. We can verify this by printing out the parameters and observing any errors that might arise.
 :end_tab:
 
@@ -138,7 +138,7 @@ weight.data(devices[0])[0], weight.data(devices[1])[0]
 ```
 
 :begin_tab:`mxnet`
-Next, let us replace the code to [**evaluate the accuracy**] by one that works (**in parallel across multiple devices**). This serves as a replacement of the `evaluate_accuracy_gpu` function from :numref:`sec_lenet`. The main difference is that we split a minibatch before invoking the network. All else is essentially identical.
+Next, let's replace the code to [**evaluate the accuracy**] by one that works (**in parallel across multiple devices**). This serves as a replacement of the `evaluate_accuracy_gpu` function from :numref:`sec_lenet`. The main difference is that we split a minibatch before invoking the network. All else is essentially identical.
 :end_tab:
 
 ```{.python .input}
@@ -227,7 +227,7 @@ def train(net, num_gpus, batch_size, lr):
           f'on {str(devices)}')
 ```
 
-Let us see how this works in practice. As a warm-up we [**train the network on a single GPU.**]
+Let's see how this works in practice. As a warm-up we [**train the network on a single GPU.**]
 
 ```{.python .input}
 train(num_gpus=1, batch_size=256, lr=0.1)
@@ -238,7 +238,7 @@ train(num_gpus=1, batch_size=256, lr=0.1)
 train(net, num_gpus=1, batch_size=256, lr=0.1)
 ```
 
-Next we [**use 2 GPUs for training**]. Compared with LeNet 
+Next we [**use 2 GPUs for training**]. Compared with LeNet
 evaluated in :numref:`sec_multi_gpu`,
 the model for ResNet-18 is considerably more complex. This is where parallelization shows its advantage. The time for computation is meaningfully larger than the time for synchronizing parameters. This improves scalability since the overhead for parallelization is less relevant.
 
@@ -256,7 +256,7 @@ train(net, num_gpus=2, batch_size=512, lr=0.2)
 :begin_tab:`mxnet`
 * Gluon provides primitives for model initialization across multiple devices by providing a context list.
 :end_tab:
-* Data are automatically evaluated on the devices where the data can be found.
+* Data is automatically evaluated on the devices where the data can be found.
 * Take care to initialize the networks on each device before trying to access the parameters on that device. Otherwise you will encounter an error.
 * The optimization algorithms automatically aggregate over multiple GPUs.
 

@@ -21,7 +21,7 @@ this can lead to more efficient training.
 To leverage statistical
 information in the entire corpus
 for word embedding,
-let us first revisit
+let's first revisit
 the skip-gram model in :numref:`subsec_skip-gram`,
 but interpreting it
 using global corpus statistics
@@ -69,7 +69,7 @@ Thus, multiset $\mathcal{C}_i = \{j, j, k, k, k, k, l, m\}$, where
 multiplicities of elements $j, k, l, m$
 are 2, 4, 1, 1, respectively.
 
-Now let us denote the multiplicity of element $j$ in
+Now let's denote the multiplicity of element $j$ in
 multiset $\mathcal{C}_i$ as $x_{ij}$.
 This is the global co-occurrence count 
 of word $w_j$ (as the context word)
@@ -123,7 +123,7 @@ Though being commonly used
 for measuring the distance
 between probability distributions,
 the cross-entropy loss function may not be a good choice here. 
-On one hand, as we mentioned in :numref:`sec_approx_train`, 
+On the one hand, as we mentioned in :numref:`sec_approx_train`, 
 the cost of properly normalizing $q_{ij}$
 results in the sum over the entire vocabulary,
 which can be computationally expensive.
@@ -252,7 +252,7 @@ i.e.,
 
 $$f(\mathbf{u}_j, \mathbf{u}_k, {\mathbf{v}}_i) = \frac{\exp\left(\mathbf{u}_j^\top {\mathbf{v}}_i\right)}{\exp\left(\mathbf{u}_k^\top {\mathbf{v}}_i\right)} \approx \frac{p_{ij}}{p_{ik}}.$$
 
-Now let us pick
+Now let's pick
 $\exp\left(\mathbf{u}_j^\top {\mathbf{v}}_i\right) \approx \alpha p_{ij}$,
 where $\alpha$ is a constant.
 Since $p_{ij}=x_{ij}/x_i$, after taking the logarithm on both sides we get $\mathbf{u}_j^\top {\mathbf{v}}_i \approx \log\,\alpha + \log\,x_{ij} - \log\,x_i$. 

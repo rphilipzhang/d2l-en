@@ -5,7 +5,7 @@ We have introduced several word embedding models for natural language understand
 After pretraining, the output can be thought of as a matrix
 where each row is a vector that represents a word of a predefined vocabulary.
 In fact, these word embedding models are all *context-independent*.
-Let us begin by illustrating this property.
+Let's begin by illustrating this property.
 
 
 ## From Context-Independent to Context-Sensitive
@@ -34,7 +34,7 @@ ELMo is a function that assigns a representation to each word from the input seq
 Specifically, ELMo combines all the intermediate layer representations from pretrained bidirectional LSTM as the output representation.
 Then the ELMo representation will be added to a downstream task's existing supervised model
 as additional features, such as by concatenating ELMo representation and the original representation (e.g., GloVe) of tokens in the existing model.
-On one hand,
+On the one hand,
 all the weights in the pretrained bidirectional LSTM model are frozen after ELMo representations are added.
 On the other hand,
 the existing supervised model is specifically customized for a given task.
@@ -125,7 +125,7 @@ import torch
 from torch import nn
 ```
 
-## Input Representation
+## [**Input Representation**]
 :label:`subsec_bert_input_rep`
 
 In natural language processing,
@@ -182,7 +182,7 @@ of the token embeddings, segment embeddings, and positional embeddings.
 of the token embeddings, segment embeddings, and positional embeddings.](../img/bert-input.svg)
 :label:`fig_bert-input`
 
-The following `BERTEncoder` class is similar to the `TransformerEncoder` class
+The following [**`BERTEncoder` class**] is similar to the `TransformerEncoder` class
 as implemented in :numref:`sec_transformer`.
 Different from `TransformerEncoder`, `BERTEncoder` uses
 segment embeddings and learnable positional embeddings.
@@ -248,8 +248,8 @@ class BERTEncoder(nn.Module):
 ```
 
 Suppose that the vocabulary size is 10000.
-To demonstrate forward inference of `BERTEncoder`,
-let us create an instance of it and initialize its parameters.
+To demonstrate forward [**inference of `BERTEncoder`**],
+let's create an instance of it and initialize its parameters.
 
 ```{.python .input}
 vocab_size, num_hiddens, ffn_num_hiddens, num_heads = 10000, 768, 1024, 4
@@ -301,7 +301,7 @@ for pretraining BERT.
 The pretraining is composed of the following two tasks:
 masked language modeling and next sentence prediction.
 
-### Masked Language Modeling
+### [**Masked Language Modeling**]
 :label:`subsec_mlm`
 
 As illustrated in :numref:`sec_language_model`,
@@ -387,7 +387,7 @@ class MaskLM(nn.Module):
         return mlm_Y_hat
 ```
 
-To demonstrate the forward inference of `MaskLM`,
+To demonstrate [**the forward inference of `MaskLM`**],
 we create its instance `mlm` and initialize it.
 Recall that `encoded_X` from the forward inference of `BERTEncoder`
 represents 2 BERT input sequences.
@@ -430,7 +430,7 @@ mlm_l = loss(mlm_Y_hat.reshape((-1, vocab_size)), mlm_Y.reshape(-1))
 mlm_l.shape
 ```
 
-### Next Sentence Prediction
+### [**Next Sentence Prediction**]
 :label:`subsec_nsp`
 
 Although masked language modeling is able to encode bidirectional context
@@ -478,7 +478,7 @@ class NextSentencePred(nn.Module):
         return self.output(X)
 ```
 
-We can see that the forward inference of an `NextSentencePred` instance
+We can see that [**the forward inference of an `NextSentencePred`**] instance
 returns binary predictions for each BERT input sequence.
 
 ```{.python .input}
@@ -522,7 +522,7 @@ These two text corpora are huge:
 they have 800 million words and 2.5 billion words, respectively.
 
 
-## Putting All Things Together
+## [**Putting All Things Together**]
 
 When pretraining BERT, the final loss function is a linear combination of
 both the loss functions for masked language modeling and next sentence prediction.
@@ -603,7 +603,7 @@ class BERTModel(nn.Module):
 
 1. Why does BERT succeed?
 1. All other things being equal, will a masked language model require more or fewer pretraining steps to converge than a left-to-right language model? Why?
-1. In the original implementation of BERT, the positionwise feed-forward network in `BERTEncoder` (via `d2l.EncoderBlock`) and the fully-connected layer in `MaskLM` both use the Gaussian error linear unit (GELU) :cite:`Hendrycks.Gimpel.2016` as the activation function. Research into the difference between GELU and ReLU.
+1. In the original implementation of BERT, the positionwise feed-forward network in `BERTEncoder` (via `d2l.EncoderBlock`) and the fully connected layer in `MaskLM` both use the Gaussian error linear unit (GELU) :cite:`Hendrycks.Gimpel.2016` as the activation function. Research into the difference between GELU and ReLU.
 
 :begin_tab:`mxnet`
 [Discussions](https://discuss.d2l.ai/t/388)

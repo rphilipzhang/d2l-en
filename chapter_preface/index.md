@@ -260,7 +260,7 @@ including regression and classification;
 linear models and multilayer perceptrons;
 and overfitting and regularization.
 
-* The next five chapters focus on modern deep learning techniques.
+* The next six chapters focus on modern deep learning techniques.
 :numref:`chap_computation` describes 
 the key computational components 
 of deep learning systems
@@ -311,7 +311,7 @@ via trial and error,
 tweaking the code in small ways and observing the results.
 Ideally, an elegant mathematical theory might tell us
 precisely how to tweak our code to achieve a desired result.
-However, today deep learning practitioners today
+However, deep learning practitioners today
 must often tread where no cogent theory 
 can provide firm guidance. 
 Despite our best attempts, formal explanations 
@@ -340,6 +340,7 @@ the following dependencies:
 ```{.python .input}
 #@tab all
 #@save
+import inspect
 import collections
 from collections import defaultdict
 from IPython import display
@@ -521,7 +522,8 @@ Adriaan Tijsseling, Ron Medina, Gaurav Saha, Murat Semerci, Lei Mao, Levi McClen
 jake221, jonbally, zyhazwraith, Brian Pulfer, Nick Tomasino, Lefan Zhang, Hongshen Yang, Vinney Cavallo,
 yuntai, Yuanxiang Zhu, amarazov, pasricha, Ben Greenawald, Shivam Upadhyay, Quanshangze Du, Biswajit Sahoo,
 Parthe Pandit, Ishan Kumar, HomunculusK, Lane Schwartz, varadgunjal, Jason Wiener, Armin Gholampoor,
-Shreshtha13, eigen-arnav, Hyeonggyu Kim, EmilyOng, Bálint Mucsányi, Chase DuBois.
+Shreshtha13, eigen-arnav, Hyeonggyu Kim, EmilyOng, Bálint Mucsányi, Chase DuBois, Juntian Tao,
+gopalakrishna-r, Wenxiang Xu, Lifu Huang, filevich, quake2005.
 
 We thank Amazon Web Services, especially Swami Sivasubramanian,
 Raju Gulabani, Charlie Bell, and Andrew Jassy for their generous support in writing this book. 

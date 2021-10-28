@@ -25,7 +25,6 @@ such as in areas of language, vision, speech, and reinforcement learning.
 
 ## Model
 
-
 As an instance of the encoder-decoder
 architecture,
 the overall architecture of
@@ -220,7 +219,7 @@ ffn(tf.ones((2, 3, 4)))[0]
 
 ## Residual Connection and Layer Normalization
 
-Now let us focus on
+Now let's focus on
 the "add & norm" component in :numref:`fig_transformer`.
 As we described at the beginning
 of this section,
@@ -348,7 +347,7 @@ add_norm(tf.ones((2, 3, 4)), tf.ones((2, 3, 4)), training=False).shape
 
 With all the essential components to assemble
 the transformer encoder,
-let us start by
+let's start by
 implementing [**a single layer within the encoder**].
 The following `EncoderBlock` class
 contains two sublayers: multi-head self-attention and positionwise feed-forward networks,
@@ -786,7 +785,7 @@ decoder_blk(X, state, training=False)[0].shape
 Now we [**construct the entire transformer decoder**]
 composed of `num_layers` instances of `DecoderBlock`.
 In the end,
-a fully-connected layer computes the prediction
+a fully connected layer computes the prediction
 for all the `vocab_size` possible output tokens.
 Both of the decoder self-attention weights
 and the encoder-decoder attention weights
@@ -904,7 +903,7 @@ class TransformerDecoder(d2l.AttentionDecoder):
 
 ## [**Training**]
 
-Let us instantiate an encoder-decoder model
+Let's instantiate an encoder-decoder model
 by following the transformer architecture.
 Here we specify that
 both the transformer encoder and the transformer decoder
@@ -997,7 +996,7 @@ for eng, fra in zip(engs, fras):
           f'bleu {d2l.bleu(translation, fra, k=2):.3f}')
 ```
 
-Let us [**visualize the transformer attention weights**] when translating the last English sentence into French.
+Let's [**visualize the transformer attention weights**] when translating the last English sentence into French.
 The shape of the encoder self-attention weights
 is (number of encoder layers, number of attention heads, `num_steps` or number of queries, `num_steps` or number of key-value pairs).
 
@@ -1145,4 +1144,8 @@ for different deep learning tasks.
 
 :begin_tab:`pytorch`
 [Discussions](https://discuss.d2l.ai/t/1066)
+:end_tab:
+
+:begin_tab:`tensorflow`
+[Discussions](https://discuss.d2l.ai/t/3871)
 :end_tab:

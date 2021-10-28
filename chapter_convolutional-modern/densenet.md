@@ -1,7 +1,7 @@
 # Densely Connected Networks (DenseNet)
 
 ResNet significantly changed the view of how to parametrize the functions in deep networks. *DenseNet* (dense convolutional network) is to some extent the logical extension of this :cite:`Huang.Liu.Van-Der-Maaten.ea.2017`.
-To understand how to arrive at it, let us take a small detour to mathematics.
+To understand how to arrive at it, let's take a small detour to mathematics.
 
 
 ## From ResNet to DenseNet
@@ -326,7 +326,7 @@ def block_2():
     return net
 ```
 
-Similar to ResNet, a global pooling layer and a fully-connected layer are connected at the end to produce the output.
+Similar to ResNet, a global pooling layer and a fully connected layer are connected at the end to produce the output.
 
 ```{.python .input}
 net.add(nn.BatchNorm(),

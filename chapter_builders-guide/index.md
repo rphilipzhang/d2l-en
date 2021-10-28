@@ -1,4 +1,4 @@
-# Deep Learning Computation
+# Builders' Guide
 :label:`chap_computation`
 
 Alongside giant datasets and powerful hardware,
@@ -44,6 +44,7 @@ the advanced modeling chapters that follow rely heavily on these techniques.
 
 model-construction
 parameters
+init-param
 deferred-init
 custom-layer
 read-write
